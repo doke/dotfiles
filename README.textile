@@ -1,0 +1,9 @@
+h2. Setup
+
+h3. The automatic installer... (do you trust me?)
+
+@wget http://github.com/doke/dotfiles/raw/master/install.sh -O - | sh@
+
+or with curl:
+
+@curl http://github.com/doke/dotfiles/raw/master/install.sh | sh@
