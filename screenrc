@@ -1,0 +1,8 @@
+defscrollback 100000
+termcapinfo xterm ti@:te@
+startup_message off # Disable
+escape \034\034
+shell -$SHELL
+hardstatus alwayslastline '%{bk}%-w%<%{gk}%n %t %{-}%+w %<%{kk}'
+vbell off
+defutf8 on
