@@ -5,11 +5,9 @@ then
 fi
 
 echo "Cloning dotfiles..."
-/usr/bin/env git clone git://github.com/doke/dotfiles.git ~/.dotfiles
+/usr/bin/env git clone --recursive git://github.com/doke/dotfiles.git ~/.dotfiles
 
 cd ~/.dotfiles
-git submodule init
-sit submodule update
 
 rake install
 
