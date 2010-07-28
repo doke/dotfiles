@@ -10,3 +10,8 @@ if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
   syntax on
   set hlsearch
 endif
+
+set autoindent
+set smartindent
+set tabstop=4
+set shiftwidth=4
