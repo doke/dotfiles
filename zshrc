@@ -16,8 +16,15 @@ export ZSH_THEME="doke"
 
 source $ZSH/oh-my-zsh.sh
 
-# Customize to your needs...
-export PATH=/Users/david/Dropbox/bin:/opt/local/bin:/usr/local/mysql/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin
+# check the OS
+case $(uname -s) in
+	Darwin)
+		export PATH=/Users/david/Dropbox/bin:/opt/local/bin:/usr/local/mysql/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin
+	;;
+	*)
+		export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/sbin:/usr/X11/bin
+	;;
+esac
 
 function title {
   if [[ $TERM == "screen" ]]; then
