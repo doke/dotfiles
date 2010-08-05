@@ -1,6 +1,5 @@
 # use vim
 alias vi='vim'
-alias sudo='command sudo '
 
 # Path to your oh-my-zsh configuration.
 export ZSH=$HOME/.oh-my-zsh
@@ -27,6 +26,36 @@ case $(uname -s) in
 	;;
 	*)
 		export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/sbin:/usr/X11/bin
+	;;
+esac
+
+case $(uname -s) in
+	FreeBSD)
+		alias sudo='noglob do_sudo '
+		function do_sudo
+		{
+			integer glob=1
+			local -a run
+			run=( command sudo )
+			if [[ $# -gt 1 && $1 = -u ]]; then
+				run+=($1 $2)
+	        	shift ; shift
+	    	fi
+	    	(($# == 0)) && 1=/bin/zsh
+	    	while (($#)); do
+	        	case "$1" in
+	        	command|exec|-) shift; break ;;
+	        	nocorrect) shift ;;
+	        	noglob) glob=0; shift ;;
+	        	*) break ;;
+	        	esac
+	    	done
+	    	if ((glob)); then
+	        	PATH="/sbin:/usr/sbin:/usr/local/sbin:$PATH" $run $~==*
+	    	else
+	        	PATH="/sbin:/usr/sbin:/usr/local/sbin:$PATH" $run $==*
+	    	fi
+		}
 	;;
 esac
 
