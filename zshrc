@@ -23,6 +23,7 @@ source $ZSH/oh-my-zsh.sh
 case $(uname -s) in
 	Darwin)
 		export PATH=/Users/david/Dropbox/bin:/opt/local/bin:/usr/local/mysql/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin
+		alias flushdns="dscacheutil -flushcache"
 	;;
 	*)
 		export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/sbin:/usr/X11/bin
@@ -79,4 +80,10 @@ function preexec {
   emulate -L zsh
   local -a cmd; cmd=(${(z)1})
   title $cmd[1]:t "$cmd[2,-1]"
+}
+
+source ~/.dotfiles/z.sh
+
+function precmd () {
+	z --add "$(pwd -P)"
 }
